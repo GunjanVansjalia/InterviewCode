@@ -1,0 +1,12 @@
+[
+	{
+		"id": 1,
+		"name": "IT",
+		"description": "Income Tax Department"
+	},
+	{
+		"id": 2,
+		"name": "Engineering",
+		"description": "Engineering Department have different type of sub departments"
+	}
+]
