@@ -1,9 +1,9 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "interviewtestapp": {
+    "InterviewCode": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/interviewtestapp",
+            "outputPath": "dist/InterviewCode",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -28,9 +28,22 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/extra/bootstrap/dist/css/bootstrap.min.css",
+              "src/assets/plugins/fontawesome-free/css/all.min.css",
+              "node_modules/datatables.net-dt/css/jquery.dataTables.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+              "src/assets/dist/css/adminlte.min.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/extra/jquery.min.js",
+              "src/assets/extra/bootstrap/dist/js/bootstrap.min.js",
+              "src/assets/extra/fastclick.js",              
+              "./node_modules/crypto-js/crypto-js.js",
+              "node_modules/datatables.net/js/jquery.dataTables.js",
+              "node_modules/bootstrap/dist/js/bootstrap.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -66,18 +79,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "interviewtestapp:build"
+            "browserTarget": "InterviewCode:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "interviewtestapp:build:production"
+              "browserTarget": "InterviewCode:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "interviewtestapp:build"
+            "browserTarget": "InterviewCode:build"
           }
         },
         "test": {
@@ -114,15 +127,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "interviewtestapp:serve"
+            "devServerTarget": "InterviewCode:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "interviewtestapp:serve:production"
+              "devServerTarget": "InterviewCode:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "interviewtestapp"
+  "defaultProject": "InterviewCode"
 }

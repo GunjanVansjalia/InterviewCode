@@ -1,0 +1,110 @@
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">Department</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <button type="button" style="float: right;" class="btn btn-danger btn-sm"
+                            (click)="onAddeditModelOpen('0');">Add
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Department</th>
+                                        <th>Description</th>
+                                        <th style="width: 100px;">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of departmentlist">
+                                        <td>{{item.department_name}}</td>
+                                        <td>{{item.description}}</td>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm"
+                                                (click)="onAddeditModelOpen(item.id);"><i class="fas fa-edit"></i>
+                                            </button>&nbsp;
+                                            <button class="btn btn-danger btn-sm"
+                                                (click)="onDeleteClick(item.id)">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr *ngIf="!departmentlist?.length">
+                                        <td colspan="3" style="display: center;"> No data found...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<ng-template #addeditTemplate>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Create</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="this.modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="createDepartmentForm">
+            <div class="row">
+                <div class="col-8">
+                    <div class="form-group">
+                        <label>Department Name</label>
+                        <div class="input-group">
+                            <input type="text" formControlName="department_name" placeholder="Department Name"
+                                class="form-control" />
+                            <div *ngIf="isSubmit && createDepartmentForm.get('department_name')?.errors?.required"
+                                class="invalid-feedback">
+                                Please provide department name.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-8">
+                    <div class="form-group">
+                        <label>Description</label>
+                        <div class="input-group">
+                            <input type="text" formControlName="description" maxlength="200"
+                                placeholder="Description Name" class="form-control" />
+                            <div *ngIf="isSubmit && createDepartmentForm.get('description')?.errors?.required"
+                                class="invalid-feedback">
+                                Please provide description.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-body">
+        <button style="margin-right: 5px;" type="button" class="btn btn-primary" (click)="onsubmitclick()">Submit
+        </button>
+        <button type="button" class="btn btn-danger" (click)="createDepartmentForm.reset()">Reset
+        </button>
+    </div>
+</ng-template>
+
+<!-- <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner> -->

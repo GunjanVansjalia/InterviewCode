@@ -17,9 +17,9 @@
                     <div class="card-header">
                         <button type="button" style="float: right;" class="btn btn-danger btn-sm"
                             (click)="onAddeditModelOpen('0');">Add
-                        </button>                       
+                        </button>
                     </div>
-                    <div class="card-body" *ngIf="isloading">
+                    <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover">
                                 <thead>
@@ -30,7 +30,7 @@
                                         <th>Phone Number</th>
                                         <th>Salary</th>
                                         <th>Department</th>
-                                        <th>Actions</th>
+                                        <th style="width: 100px;">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -43,10 +43,13 @@
                                         <td>{{item.departmentName}}</td>
                                         <td>
                                             <button class="btn btn-primary btn-sm"
-                                                (click)="onAddeditModelOpen(item.id);">Edit</button>&nbsp;
+                                                (click)="onAddeditModelOpen(item.id);"><i class="fas fa-edit"></i></button>&nbsp;
                                             <button class="btn btn-danger btn-sm"
-                                                (click)="onDeleteClick(item.id)">Delete</button>
+                                                (click)="onDeleteClick(item.id)"><i class="fas fa-trash"></i></button>
                                         </td>
+                                    </tr>
+                                    <tr *ngIf="!employeelist?.length">
+                                        <td colspan="7" style="display: center;"> No data found...</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -76,7 +79,7 @@
                                 class="custom-control custom-select">
                                 <option value="" class="max-width">Select Department</option>
                                 <option [value]="item.id" *ngFor="let item of departmentlist">{{
-                                    item.name
+                                    item.department_name
                                     }}</option>
                             </select>
                         </div>
@@ -118,7 +121,8 @@
                     <div class="form-group">
                         <label>Email</label>
                         <div class="input-group">
-                            <input type="email" formControlName="email_address" placeholder="Email" class="form-control" />
+                            <input type="email" formControlName="email_address" placeholder="Email"
+                                class="form-control" />
                             <div *ngIf="isSubmit && createEmployeeForm.get('email_address')?.errors?.required"
                                 class="invalid-feedback">
                                 Please provide email.
@@ -140,7 +144,7 @@
                     <div class="form-group">
                         <label>Phone Number</label>
                         <div class="input-group">
-                            <input type="text" formControlName="phone_number" placeholder="Phone Number"
+                            <input type="text" formControlName="phone_number" maxlength="10" placeholder="Phone Number"
                                 class="form-control" (keypress)="numberOnly($event)" />
                             <div *ngIf="isSubmit && createEmployeeForm.get('phone_number')?.errors?.required"
                                 class="invalid-feedback">
@@ -153,25 +157,53 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>            
             <div class="row">
                 <div class="col-8">
                     <div class="form-group">
                         <label>Salary</label>
                         <div class="input-group">
-                            <input type="text" (keypress)="numberOnly($event)" formControlName="salary" placeholder="Salary"
-                                class="form-control" />                           
+                            <input type="text" (keypress)="numberOnly($event)" formControlName="salary"
+                                placeholder="Salary" class="form-control" />
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-8">
+                    <div class="form-group">
+                        <label>Bio</label>
+                        <div class="input-group">
+                            <input type="text" formControlName="bio" placeholder="Bio" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-8">
+                    <div class="form-group">                        
+                        <div class="input-group">
+                            <label>Upload Image</label>
+                            <div class="input-group">
+                                <input type="file" #fileUpload id="fileUpload" name="fileUpload" accept=".png, .jpg, .jpeg"
+                                    (change)="handleFileInput($event.target.files)" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <img [src]="imageUrl" style="height: 200px;width: 200px;">
+                </div>
+            </div>
+
         </form>
     </div>
     <div class="modal-body">
         <button style="margin-right: 5px;" type="button" class="btn btn-primary" (click)="onsubmitclick()">Submit
         </button>
-        <button type="button" class="btn btn-danger"
-            (click)="createEmployeeForm.reset()">Reset
+        <button type="button" class="btn btn-danger" (click)="createEmployeeForm.reset()">Reset
         </button>
     </div>
 </ng-template>

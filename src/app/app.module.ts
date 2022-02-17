@@ -6,6 +6,9 @@ import { ModalModule ,BsModalService} from 'ngx-bootstrap/modal';
 import { AppComponent } from './app.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DepartmentComponent } from './department/department.component';
+import { AppmenuComponent } from './appmenu/appmenu.component';
+
 
 
 
@@ -13,7 +16,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
-    EmployeeComponent    
+    EmployeeComponent,
+    DepartmentComponent,
+    AppmenuComponent,    
   ],
   imports: [
     BrowserModule,
